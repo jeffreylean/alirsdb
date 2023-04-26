@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+import "types.proto";
+
+package alirs.ingest;
+
+service IngestService {
+    rpc Ingest(IngestRequest) returns (IngestResponse);
+}
+
+message IngestRequest {
+    string schema = 1;
+    alirs.types.OperationType typ = 2;
+    optional alirs.types.Record old = 3; 
+    alirs.types.Record new = 4;
+}
+
+message IngestResponse {}

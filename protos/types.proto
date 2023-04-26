@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package alirs.types;
+
+enum OperationType {
+    INSERT = 0;
+    DELETE = 1;
+    UPDATE = 2;
+}
+
+message Record {
+   repeated Value values = 1; 
+   uint32 version = 2;
+}
+
+message Value {
+   oneof Value {
+     uint64 uint_value = 1;
+     int64 int_value = 2;
+     double float_value = 3;
+     bool bool_value = 4;
+     string string_value = 5;
+     bytes bytes_value = 6;
+     google.protobuf.Timestamp timestamp_value = 7;
+     string date_value = 8;
+  }
+}
